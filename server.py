@@ -25,10 +25,9 @@ class Handler(BaseHTTPRequestHandler):
         sender = "Repo Response <REPORESPONSE@DONOTREPLY.COM>"
         recipients = ['YOUR_EMAIL@EMAIL.COM']
         subject = 'webhook activated'
-        #TODO: Customize the subject/body based on WebHook (through web interface?)
+        # TODO: Customize the subject/body based on WebHook (through web interface?)
         body = post_body
         request = self.send_message(sender, recipients, subject, body)
-
 
     @staticmethod
     def send_message(sender, recipients, subject, body):
@@ -47,8 +46,6 @@ def run(server=HTTPServer, handler=Handler,  httpd_port=3000):
     httpd = server(httpd_server_address, handler)
     print('Starting httpd server...')
     httpd.serve_forever()
-
-
 
 
 if __name__ == "__main__":
