@@ -5,19 +5,6 @@ Usage::
 """
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import requests
-import smtpd
-import asyncore
-import threading
-import smtplib
-
-# Seems this won't actually work from a dynamic IP for most email hosts (they reject emails from those IPs)
-# class SMTPServer(smtpd.SMTPServer):
-#
-#     def process_message(self, peer, mailfrom, rcpttos, data, **kwargs):
-#         print('Receiving message from:', peer)
-#         print('Message addressed from:', mailfrom)
-#         print('Message addressed to  :', rcpttos)
-#         print('Message length        :', len(data))
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -55,11 +42,6 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def run(server=HTTPServer, handler=Handler,  httpd_port=3000):
-    # SMTPServer(('localhost', 25), None)
-    # # this is a little automagical -  smtpd server will inject itself into the asyncore loop to be run
-    # smtp_thread = threading.Thread(target=asyncore.loop, name="SMTP Server")
-    # smtp_thread.start()s
-    # print('Starting smtp server...')
 
     httpd_server_address = ('', httpd_port)
     httpd = server(httpd_server_address, handler)
